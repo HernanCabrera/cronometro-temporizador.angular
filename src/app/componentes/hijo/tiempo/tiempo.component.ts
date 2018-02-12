@@ -7,7 +7,4 @@ import { Component, Input } from '@angular/core';
 
 export class TiempoComponent {
 	@Input('tiempo') tiempo:Object;
-	ngOnInit() {
-		console.log(this.tiempo)
-	}
 }

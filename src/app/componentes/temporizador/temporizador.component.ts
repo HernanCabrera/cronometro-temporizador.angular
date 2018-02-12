@@ -6,28 +6,114 @@ import { Component } from '@angular/core';
 })
 
 export class TemporizadorComponent{
-	public temporizador:Object;
+  public tiempo:Object;
+  public listaDeTiempos:Array<any>;
+  public tiempoActivo:boolean;
+  public nombre:string;
+  public audioID:any;
+  public intervalo:any;
+  public agregarActivo:boolean;
+  public nuevoTiempo:Object;
 	constructor() {
-		this.temporizador = {
-				tiempo: {
-	      hora: 0,
-	      minuto: 0,
-	      segundo: 0
-	    },
-	    listaDeTiempos: [],
-	    tiempoActivo: false,
-	    nombre: 'Temporizador',
-	    audioID: null,
-	    intervalo: null,
-	    agregarActivo: false,
-	    nuevoTiempo: {
-	      hora: '',
-	      minuto: '',
-	      segundo: ''
-	    }
-		}
+    this.tiempo = {
+      hora: 0,
+      minuto: 0,
+      segundo: 3
+    };
+    this.listaDeTiempos = [];
+    this.tiempoActivo = false;
+    this.nombre = 'Temporizador';
+    this.audioID = null;
+    this.intervalo = null;
+    this.agregarActivo = false;
+    this.nuevoTiempo = {
+      hora: '',
+      minuto: '',
+      segundo: ''
+    };
 	}
-	ngOnInit () {
-		console.log(this.temporizador)
-	}
+	iniciarTemporizador (obj) {
+    // Solucion al problema de celulares
+    // this.agregarAudio(obj);
+    // ---------------------------------
+    obj.tiempoActivo = !obj.tiempoActivo;
+    if (!this.tiempoNulo(obj.tiempo)) {
+      if (obj.tiempoActivo) {
+        obj.intervalo = setInterval(() => {
+          this.reducirElTiempo(obj);
+        }, 1000)
+      } else {
+        this.cambiarTitulo(1, obj.nombre, null, null);
+        clearInterval(obj.intervalo);
+      }
+    } else {
+      obj.tiempoActivo = !obj.tiempoActivo;
+    }
+  }
+	reducirElTiempo (obj) {
+    if (this.tiempoNulo(obj.tiempo)) {
+      // this.iniciarAudio(obj);
+      this.reiniciarValores(obj);
+    } else {
+      if (obj.tiempo.minuto === 0 && obj.tiempo.hora > 0 && obj.tiempo.segundo === 0) {
+        obj.tiempo.hora--;
+        obj.tiempo.minuto = 60;
+      }
+      if (obj.tiempo.segundo === 0 && obj.tiempo.minuto > 0) {
+        obj.tiempo.minuto--;
+        obj.tiempo.segundo = 60;
+      }
+      obj.tiempo.segundo--;
+      this.cambiarTitulo(2, obj.nombre, obj.tiempo, null);
+    }
+  }
+  tiempoNulo (tiempo) {
+    if (parseInt(tiempo.hora) === 0 && parseInt(tiempo.minuto) === 0 && parseInt(tiempo.segundo) === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  iniciarAudio (obj) {
+    obj.audioID.currentTime = 0;
+    obj.audioID.play();
+  }
+  reiniciarValores (obj) {
+    obj.tiempoActivo = false;
+    this.cambiarTitulo(1, obj.nombre, null, null);
+    this.inicializarTiempo(obj.tiempo, 1);
+    clearInterval(obj.intervalo);
+  }
+  cambiarTitulo (opts, str, tiempo, iteraciones) {
+    if (opts === 1) {
+      document.title = `${str}`;
+    } else if (opts === 2) {
+      document.title = ((tiempo.hora <= 9) ? '0' + tiempo.hora : tiempo.hora) + ':' +
+                        ((tiempo.minuto <= 9) ? '0' + tiempo.minuto : tiempo.minuto) + ':' +
+                        ((tiempo.segundo <= 9) ? '0' + tiempo.segundo : tiempo.segundo) +
+                        ` ${str}`;
+    } else {
+      document.title = `${iteraciones} | ` + ((tiempo.hora <= 9) ? '0' + tiempo.hora : tiempo.hora) + ':' +
+                        ((tiempo.minuto <= 9) ? '0' + tiempo.minuto : tiempo.minuto) + ':' +
+                        ((tiempo.segundo <= 9) ? '0' + tiempo.segundo : tiempo.segundo) +
+                        ` ${str}`;
+    }
+  }
+  inicializarTiempo (tiempo, opts) {
+    if (opts === 1) {
+      tiempo.hora = tiempo.minuto = tiempo.segundo = 0;
+    } else {
+      tiempo.hora = tiempo.minuto = tiempo.segundo = '';
+    }
+  }
+  agregarAudio (obj) {
+    if (obj.audioID === null) {
+      obj.audioID = document.getElementById(obj.nombre);
+      obj.audioID.play();
+      obj.audioID.pause();
+    }
+  }
+  activarModal (obj) {
+    obj.agregarActivo = true
+  }
 }
