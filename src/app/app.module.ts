@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { TemporizadorComponent } from './componentes/temporizador/temporizador.component';
 import { TiempoComponent } from './componentes/hijo/tiempo/tiempo.component';
 import { TiempoBotonesComponent } from './componentes/hijo/tiempo botones/tiempo-botones.component';
+import { NuevoTiempoComponent } from './componentes/hijo/nuevo tiempo/nuevo-tiempo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemporizadorComponent,
     TiempoComponent,
-    TiempoBotonesComponent
+    TiempoBotonesComponent,
+    NuevoTiempoComponent
   ],
   imports: [
     BrowserModule,

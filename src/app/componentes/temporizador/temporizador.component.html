@@ -1,16 +1,14 @@
 <h1>Temporizador</h1>
 
-<app-tiempo [tiempo]="tiempo"></app-tiempo>
-<app-tiempo-botones [obj]="{ tiempo: tiempo,
-														 listaDeTiempos: listaDeTiempos,
-														 tiempoActivo: tiempoActivo,
-														 nombre: nombre,
-														 audioID: audioID,
-														 intervalo: intervalo,
-														 agregarActivo: agregarActivo,
-														 nuevoTiempo: nuevoTiempo }"
+<app-tiempo [tiempo]="temporizador.tiempo"></app-tiempo>
+<app-tiempo-botones [obj]="temporizador"
 										(iniciar)="iniciarTemporizador($event)"
 										(agregar)="activarModal($event)"
 										(reiniciar)="reiniciarValores($event)">
 </app-tiempo-botones>
+
+<app-nuevo-tiempo [obj]="temporizador"
+									(agregar)="agregarALista($event)"
+									(cancelar)="cancelarModal($event)">										
+</app-nuevo-tiempo>
 

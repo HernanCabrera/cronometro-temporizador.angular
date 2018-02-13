@@ -6,32 +6,27 @@ import { Component } from '@angular/core';
 })
 
 export class TemporizadorComponent{
-  public tiempo:Object;
-  public listaDeTiempos:Array<any>;
-  public tiempoActivo:boolean;
-  public nombre:string;
-  public audioID:any;
-  public intervalo:any;
-  public agregarActivo:boolean;
-  public nuevoTiempo:Object;
-	constructor() {
-    this.tiempo = {
-      hora: 0,
-      minuto: 0,
-      segundo: 3
-    };
-    this.listaDeTiempos = [];
-    this.tiempoActivo = false;
-    this.nombre = 'Temporizador';
-    this.audioID = null;
-    this.intervalo = null;
-    this.agregarActivo = false;
-    this.nuevoTiempo = {
-      hora: '',
-      minuto: '',
-      segundo: ''
-    };
-	}
+  public temporizador:Object;
+  constructor() {
+    this.temporizador = {
+        tiempo: {
+        hora: 0,
+        minuto: 0,
+        segundo: 3
+      },
+      listaDeTiempos: [],
+      tiempoActivo: false,
+      nombre: 'Temporizador',
+      audioID: null,
+      intervalo: null,
+      agregarActivo: false,
+      nuevoTiempo: {
+        hora: '',
+        minuto: '',
+        segundo: ''
+      }
+    }
+  }
 	iniciarTemporizador (obj) {
     // Solucion al problema de celulares
     // this.agregarAudio(obj);
@@ -115,5 +110,24 @@ export class TemporizadorComponent{
   }
   activarModal (obj) {
     obj.agregarActivo = true
+  }
+  cancelarModal (obj) {
+    obj.agregarActivo = false
+    this.inicializarTiempo(obj.nuevoTiempo, 2)
+  }
+  clonarObjeto (obj) {
+    return Object.assign({}, obj)
+  }
+  agregarALista (obj) {
+    const MAX = 50
+    if (obj.listaDeTiempos.length < MAX) {
+      const clon = this.clonarObjeto(obj.nuevoTiempo)
+      clon.hora = (clon.hora === '') ? 0 : parseInt(clon.hora)
+      clon.minuto = (clon.minuto === '') ? 0 : parseInt(clon.minuto)
+      clon.segundo = (clon.segundo === '') ? 0 : parseInt(clon.segundo)
+      obj.listaDeTiempos.push(clon)
+      this.inicializarTiempo(obj.nuevoTiempo, 2)
+      this.cancelarModal(obj)
+    }
   }
 }
