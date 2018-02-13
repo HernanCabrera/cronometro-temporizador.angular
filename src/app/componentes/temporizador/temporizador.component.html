@@ -12,3 +12,8 @@
 									(cancelar)="cancelarModal($event)">										
 </app-nuevo-tiempo>
 
+<app-lista-de-tiempos [obj]="temporizador"
+											(agregar)="agregarAlPrincipal($event)"
+											(eliminar)="eliminarTiempo($event)">
+</app-lista-de-tiempos>
+

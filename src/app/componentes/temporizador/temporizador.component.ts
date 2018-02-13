@@ -9,10 +9,10 @@ export class TemporizadorComponent{
   public temporizador:Object;
   constructor() {
     this.temporizador = {
-        tiempo: {
+      tiempo: {
         hora: 0,
         minuto: 0,
-        segundo: 3
+        segundo: 0
       },
       listaDeTiempos: [],
       tiempoActivo: false,
@@ -129,5 +129,15 @@ export class TemporizadorComponent{
       this.inicializarTiempo(obj.nuevoTiempo, 2)
       this.cancelarModal(obj)
     }
+  }
+  agregarAlPrincipal (obj) {
+    console.log(obj.tiempoActivo, obj.tiempo, obj.nuevoTiempo)
+    if (!obj.tiempoActivo) {
+      obj.tiempo = this.clonarObjeto(obj.nuevoTiempo)
+      this.inicializarTiempo(obj.nuevoTiempo, 2);
+    }
+  }
+  eliminarTiempo (tiempo) {
+    tiempo.listaDeTiempos.splice(tiempo.indice, 1)
   }
 }

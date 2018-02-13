@@ -1,0 +1,13 @@
+<ul class="lista-tiempos">
+  <li *ngFor="let tiempo of obj.listaDeTiempos; let indiceDeTiempo = index">
+    <div class="contenedor-btn-texto">
+      <button class="btn-agregar" (click)="agregarAlPrincipal(tiempo, obj)">{{ indiceDeTiempo + 1 }}</button>
+        <ul class="texto">
+          <li>{{ tiempo.hora }}:</li>
+          <li>{{ tiempo.minuto }}:</li>
+          <li>{{ tiempo.segundo }}</li>
+        </ul>
+    </div>
+    <button class="btn-eliminar" (click)="eliminarTiempo(indiceDeTiempo, obj)">ELIMINAR</button>
+  </li>
+</ul>

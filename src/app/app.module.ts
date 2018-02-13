@@ -10,6 +10,7 @@ import { TemporizadorComponent } from './componentes/temporizador/temporizador.c
 import { TiempoComponent } from './componentes/hijo/tiempo/tiempo.component';
 import { TiempoBotonesComponent } from './componentes/hijo/tiempo botones/tiempo-botones.component';
 import { NuevoTiempoComponent } from './componentes/hijo/nuevo tiempo/nuevo-tiempo.component';
+import { ListaDeTiemposComponent } from './componentes/hijo/lista de tiempos/lista-de-tiempos.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NuevoTiempoComponent } from './componentes/hijo/nuevo tiempo/nuevo-tiem
     TemporizadorComponent,
     TiempoComponent,
     TiempoBotonesComponent,
-    NuevoTiempoComponent
+    NuevoTiempoComponent,
+    ListaDeTiemposComponent
   ],
   imports: [
     BrowserModule,

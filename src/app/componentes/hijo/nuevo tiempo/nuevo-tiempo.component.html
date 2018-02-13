@@ -1,25 +1,24 @@
-<span>Modal :)</span>
 <div class="overlay" *ngIf="obj.agregarActivo === true">
-	<div class="modal">
-		<h3>titulo Nuevo Tiempo!</h3>
-		<div class="modal-buttons">
-			<input 	[(ngModel)]="obj.nuevoTiempo.hora"
-							type="number"
-							min="0"
-        			max="23"
-        			placeholder="horas">
-      <input 	[(ngModel)]="obj.nuevoTiempo.minuto"
-      				type="number"
-							min="0"
-        			max="23"
-        			placeholder="minutos">
-      <input 	[(ngModel)]="obj.nuevoTiempo.segundo"
-      				type="number"
-							min="0"
-        			max="23"
-        			placeholder="segundos">
-		</div>
-		<button class="btn agregar" (click)="agregarALaLista()">AGREGAR</button>
-		<button class="btn cancelar" (click)="cancelarModal()">CANCELAR</button>
-	</div>
+  <div class="modal">
+    <h3>titulo Nuevo Tiempo!</h3>
+    <div class="modal-buttons">
+      <input  [(ngModel)]="obj.nuevoTiempo.hora"
+              type="number"
+              min="0"
+              max="23"
+              placeholder="horas">
+      <input  [(ngModel)]="obj.nuevoTiempo.minuto"
+              type="number"
+              min="0"
+              max="59"
+              placeholder="minutos">
+      <input  [(ngModel)]="obj.nuevoTiempo.segundo"
+              type="number"
+              min="0"
+              max="59"
+              placeholder="segundos">
+    </div>
+    <button class="btn agregar" (click)="agregarALaLista()">AGREGAR</button>
+    <button class="btn cancelar" (click)="cancelarModal()">CANCELAR</button>
+  </div>
 </div>
