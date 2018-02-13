@@ -1,19 +1,28 @@
-<h1>Temporizador</h1>
-
 <app-tiempo [tiempo]="temporizador.tiempo"></app-tiempo>
-<app-tiempo-botones [obj]="temporizador"
-										(iniciar)="iniciarTemporizador($event)"
-										(agregar)="activarModal($event)"
-										(reiniciar)="reiniciarValores($event)">
+
+<app-tiempo-botones
+  [obj]="temporizador"
+  (iniciar)="iniciarTemporizador($event)"
+  (agregar)="activarModal($event)"
+  (reiniciar)="reiniciarValores($event)">
 </app-tiempo-botones>
 
-<app-nuevo-tiempo [obj]="temporizador"
-									(agregar)="agregarALista($event)"
-									(cancelar)="cancelarModal($event)">										
+<app-nuevo-tiempo
+  [obj]="temporizador"
+  (agregar)="agregarALista($event)"
+  (cancelar)="cancelarModal($event)">
 </app-nuevo-tiempo>
 
-<app-lista-de-tiempos [obj]="temporizador"
-											(agregar)="agregarAlPrincipal($event)"
-											(eliminar)="eliminarTiempo($event)">
+<app-lista-de-tiempos
+  [obj]="temporizador"
+  (agregar)="agregarAlPrincipal($event)"
+  (eliminar)="eliminarTiempo($event)">
 </app-lista-de-tiempos>
 
+<audio
+  controls
+  [id]="temporizador.nombre"
+  src="./../../../assets/alarma.mp3"
+  type="audio/mpeg"
+  preload="auto">
+</audio>

@@ -14,6 +14,11 @@ export class TemporizadorComponent{
         minuto: 0,
         segundo: 0
       },
+      auxTiempo: {
+        hora: 0,
+        minuto: 0,
+        segundo: 0
+      },
       listaDeTiempos: [],
       tiempoActivo: false,
       nombre: 'Temporizador',
@@ -29,7 +34,7 @@ export class TemporizadorComponent{
   }
 	iniciarTemporizador (obj) {
     // Solucion al problema de celulares
-    // this.agregarAudio(obj);
+    this.agregarAudio(obj);
     // ---------------------------------
     obj.tiempoActivo = !obj.tiempoActivo;
     if (!this.tiempoNulo(obj.tiempo)) {
@@ -47,7 +52,7 @@ export class TemporizadorComponent{
   }
 	reducirElTiempo (obj) {
     if (this.tiempoNulo(obj.tiempo)) {
-      // this.iniciarAudio(obj);
+      this.iniciarAudio(obj);
       this.reiniciarValores(obj);
     } else {
       if (obj.tiempo.minuto === 0 && obj.tiempo.hora > 0 && obj.tiempo.segundo === 0) {
@@ -76,7 +81,7 @@ export class TemporizadorComponent{
   reiniciarValores (obj) {
     obj.tiempoActivo = false;
     this.cambiarTitulo(1, obj.nombre, null, null);
-    this.inicializarTiempo(obj.tiempo, 1);
+    obj.tiempo = this.clonarObjeto(obj.auxTiempo)
     clearInterval(obj.intervalo);
   }
   cambiarTitulo (opts, str, tiempo, iteraciones) {
@@ -109,35 +114,35 @@ export class TemporizadorComponent{
     }
   }
   activarModal (obj) {
-    obj.agregarActivo = true
+    obj.agregarActivo = true;
   }
   cancelarModal (obj) {
-    obj.agregarActivo = false
-    this.inicializarTiempo(obj.nuevoTiempo, 2)
+    obj.agregarActivo = false;
+    this.inicializarTiempo(obj.nuevoTiempo, 2);
   }
   clonarObjeto (obj) {
-    return Object.assign({}, obj)
+    return Object.assign({}, obj);
   }
   agregarALista (obj) {
     const MAX = 50
     if (obj.listaDeTiempos.length < MAX) {
-      const clon = this.clonarObjeto(obj.nuevoTiempo)
-      clon.hora = (clon.hora === '') ? 0 : parseInt(clon.hora)
-      clon.minuto = (clon.minuto === '') ? 0 : parseInt(clon.minuto)
-      clon.segundo = (clon.segundo === '') ? 0 : parseInt(clon.segundo)
-      obj.listaDeTiempos.push(clon)
-      this.inicializarTiempo(obj.nuevoTiempo, 2)
-      this.cancelarModal(obj)
+      const clon = this.clonarObjeto(obj.nuevoTiempo);
+      clon.hora = (clon.hora === '') ? 0 : parseInt(clon.hora);
+      clon.minuto = (clon.minuto === '') ? 0 : parseInt(clon.minuto);
+      clon.segundo = (clon.segundo === '') ? 0 : parseInt(clon.segundo);
+      obj.listaDeTiempos.push(clon);
+      this.inicializarTiempo(obj.nuevoTiempo, 2);
+      this.cancelarModal(obj);
     }
   }
   agregarAlPrincipal (obj) {
-    console.log(obj.tiempoActivo, obj.tiempo, obj.nuevoTiempo)
     if (!obj.tiempoActivo) {
       obj.tiempo = this.clonarObjeto(obj.nuevoTiempo)
+      obj.auxTiempo = this.clonarObjeto(obj.nuevoTiempo);
       this.inicializarTiempo(obj.nuevoTiempo, 2);
     }
   }
   eliminarTiempo (tiempo) {
-    tiempo.listaDeTiempos.splice(tiempo.indice, 1)
+    tiempo.listaDeTiempos.splice(tiempo.indice, 1);
   }
 }
