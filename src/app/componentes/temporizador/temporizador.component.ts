@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-temporizador',
-	templateUrl: './temporizador.component.html'
+	templateUrl: './temporizador.component.html',
+  styleUrls: ['./temporizador.component.css']
 })
 
 export class TemporizadorComponent{
@@ -124,8 +125,9 @@ export class TemporizadorComponent{
     return Object.assign({}, obj);
   }
   agregarALista (obj) {
-    const MAX = 50
-    if (obj.listaDeTiempos.length < MAX) {
+    const MAX = 50;
+    console.log(obj.nuevoTiempo);
+    if (obj.listaDeTiempos.length < MAX && (obj.nuevoTiempo.hora !== '' || obj.nuevoTiempo.minuto !== '' || obj.nuevoTiempo.segundo !== '')) {
       const clon = this.clonarObjeto(obj.nuevoTiempo);
       clon.hora = (clon.hora === '') ? 0 : parseInt(clon.hora);
       clon.minuto = (clon.minuto === '') ? 0 : parseInt(clon.minuto);

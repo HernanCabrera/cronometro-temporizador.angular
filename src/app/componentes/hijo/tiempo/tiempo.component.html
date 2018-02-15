@@ -1,5 +1,14 @@
-<span>{{ tiempo.hora }}</span>
-<span>:</span>
-<span>{{ tiempo.minuto }}</span>
-<span>:</span>
-<span>{{ tiempo.segundo }}</span>
+<ul class="contenedor-tiempo contenedor">
+  <li class="hora tiempo">{{ tiempo.hora }}</li>
+  <li class="simbolo">:</li>
+  <li class="minuto tiempo">{{ tiempo.minuto }}</li>
+  <li class="simbolo">:</li>
+  <li class="segundo tiempo">{{ tiempo.segundo }}</li>
+</ul>
+<!-- <div class="contenedor">
+  <span class="hora tiempo"> {{ tiempo.hora  }}</span>
+  <span class="simbolo">:</span>
+  <span class="minuto tiempo"> {{ tiempo.minuto  }}</span>
+  <span class="simbolo">:</span>
+  <span class="segundo tiempo"> {{ tiempo.segundo  }}</span>
+</div> -->
