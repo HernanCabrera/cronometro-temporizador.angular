@@ -1,0 +1,58 @@
+<nav class="navegacion">
+  <ul class="menu">
+    <li class="menu-item">
+      <a  
+        class="item-enlace icon-hour-glass"
+        [routerLink]="['/temporizador']" 
+        [routerLinkActive]="['activado']">
+      </a>
+    </li>
+    <li class="menu-item">
+      <a
+        class="item-enlace icon-stopwatch"
+        [routerLink]="['/cronometro']" 
+        [routerLinkActive]="['activado']">
+      </a>
+    </li>
+    <li class="menu-item">
+      <a
+        class="item-enlace icon-hammer"
+        [routerLink]="['/manual']" 
+        [routerLinkActive]="['activado']">
+      </a>
+    </li>
+    <li class="menu-item">
+      <a
+        class="item-enlace icon-cog"
+        [routerLink]="['/configuracion']" 
+        [routerLinkActive]="['activado']">
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- ul.menu
+  li.opcion
+    router-link.icon.icon-hour-glass(
+      :class="{ 'esta-seleccionada': opcionAPP === 1 }"
+      to="/"
+    )
+  li.opcion
+    router-link.icon.icon-stopwatch(
+      :class="{ 'esta-seleccionada': opcionAPP === 2 }"
+      to="cronometro"
+    )
+  li.opcion
+    router-link.icon.icon-hammer(
+      :class="{ 'esta-seleccionada': opcionAPP === 3 }"
+      to="manual"
+    )
+  li.opcion
+    router-link.icon.icon-man(
+      :class="{ 'esta-seleccionada': opcionAPP === 4 }"
+      to="redes-sociales"
+    )
+  li.opcion
+    button.icon(
+      :class="(fullScreen)? 'icon-shrink' : 'icon-enlarge'"
+      @click="cambiarFullScreen()"
+    ) -->
