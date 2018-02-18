@@ -15,8 +15,8 @@
 .contenedor-tiempo .tiempo{
   background: #212121;
   width: 30%;
-  /*letter-spacing: -2px;*/
   font-family: sans-serif;
+  padding: 10px 0;
 }
 
 .contenedor-tiempo .simbolo{
@@ -30,7 +30,9 @@
   font-size: 64px;
   font-size: sans-serif;
 }
-
+.texto{
+  margin: 5px auto;
+}
 .contenedor-tiempo .texto-tiempo{
   display: inline-block;
   text-align: center;
@@ -38,7 +40,13 @@
 }
 
 @media (max-width: 720px) {
-  .contenedor-tiempo{
+  .margen-1{
+    margin-top: 20px;
+  }
+  .margen-2{
+    margin-bottom: 5px;
+  }
+  /*.contenedor-tiempo{
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -47,10 +55,10 @@
   }
   .margen-2{
     margin-bottom: 20px;
-  }
+  }*/
 }
 @media (max-width: 550px) {
-  .contenedor-tiempo{
+  /*.contenedor-tiempo{
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -59,5 +67,8 @@
   }
   .margen-2{
     margin-bottom: 10px;
+  }*/
+  .contenedor-tiempo .tiempo{
+    padding: 0;
   }
 }

@@ -86,18 +86,19 @@ export class TemporizadorComponent{
     clearInterval(obj.intervalo);
   }
   cambiarTitulo (opts, str, tiempo, iteraciones) {
+    const tituloOriginal = 'TimeToTime';
     if (opts === 1) {
-      document.title = `${str}`;
+      document.title = `${tituloOriginal}-${str}`;
     } else if (opts === 2) {
-      document.title = ((tiempo.hora <= 9) ? '0' + tiempo.hora : tiempo.hora) + ':' +
+      document.title = tiempo.hora + ':' +
                         ((tiempo.minuto <= 9) ? '0' + tiempo.minuto : tiempo.minuto) + ':' +
                         ((tiempo.segundo <= 9) ? '0' + tiempo.segundo : tiempo.segundo) +
-                        ` ${str}`;
+                        ` ${tituloOriginal}-${str}`;
     } else {
-      document.title = `${iteraciones} | ` + ((tiempo.hora <= 9) ? '0' + tiempo.hora : tiempo.hora) + ':' +
+      document.title = `${iteraciones} | ` + tiempo.hora + ':' +
                         ((tiempo.minuto <= 9) ? '0' + tiempo.minuto : tiempo.minuto) + ':' +
                         ((tiempo.segundo <= 9) ? '0' + tiempo.segundo : tiempo.segundo) +
-                        ` ${str}`;
+                        ` ${tituloOriginal}-${str}`;
     }
   }
   inicializarTiempo (tiempo, opts) {
