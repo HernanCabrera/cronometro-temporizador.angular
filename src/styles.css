@@ -84,13 +84,16 @@
 .icon-git:before {
   content: "\eae7";
 }
-
 body{
   max-height: 100vh;
   font-size: 16px;
   font-family: 'Raleway', sans-serif;
   background: #111111; 
   min-height: 100vh;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 *{
   box-sizing: border-box;
@@ -101,4 +104,9 @@ body{
 audio{
   position: absolute;
   opacity: 0;
+}
+
+.contenedor{
+  max-width: 700px;
+  margin: 0 auto;
 }
