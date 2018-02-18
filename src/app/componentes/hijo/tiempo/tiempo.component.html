@@ -1,21 +1,13 @@
-<!-- <ul class="contenedor-tiempo contenedor">
-  <li class="hora tiempo">{{ tiempo.hora }}</li>
-  <li class="simbolo">:</li>
-  <li class="minuto tiempo">{{ tiempo.minuto | conversorATiempo }}</li>
-  <li class="simbolo">:</li>
-  <li class="segundo tiempo">{{ tiempo.segundo | conversorATiempo }}</li>
-</ul> -->
-<p class="contenedor-tiempo contenedor">
+
+<p class="contenedor-tiempo margen-1">
   <time class="hora tiempo">{{ tiempo.hora }}</time>
   <span class="simbolo">:</span>
   <time class="minuto tiempo">{{ tiempo.minuto | conversorATiempo }}</time>
   <span class="simbolo">:</span>
   <time class="segundo tiempo">{{ tiempo.segundo | conversorATiempo }}</time>
 </p>
-<!-- <div class="contenedor">
-  <span class="hora tiempo"> {{ tiempo.hora  }}</span>
-  <span class="simbolo">:</span>
-  <span class="minuto tiempo"> {{ tiempo.minuto  }}</span>
-  <span class="simbolo">:</span>
-  <span class="segundo tiempo"> {{ tiempo.segundo  }}</span>
-</div> -->
+<p class="contenedor-tiempo margen-2">
+  <span class="texto-tiempo hora">horas</span>
+  <span class="texto-tiempo minuto">minutos</span>
+  <span class="texto-tiempo segundo">segundos</span>
+</p>

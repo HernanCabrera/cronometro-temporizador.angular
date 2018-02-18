@@ -4,6 +4,7 @@
   background: #222222;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid #2D2D2D;
 }
 .navegacion .titulo .titulo-enlace{
   color: #fefefe;
@@ -11,6 +12,7 @@
   font-family: 'Raleway';
   margin-left: 16px;
   text-decoration: none;
+  font-size: 32px;
 }
 .navegacion .menu{
   list-style: none;
