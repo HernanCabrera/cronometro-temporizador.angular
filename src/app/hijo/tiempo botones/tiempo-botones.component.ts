@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export class TiempoBotonesComponent{
   @Input() obj:Object;
+  @Input() opcionApp:number;
   @Output('iniciar') iniciarEvento = new EventEmitter();
   @Output('agregar') agregarEvento = new EventEmitter();
   @Output('reiniciar') reiniciarEvento = new EventEmitter();

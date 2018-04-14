@@ -2,6 +2,7 @@
 
 <app-tiempo-botones
   [obj]="temporizador"
+  [opcionApp]="1"
   (iniciar)="iniciarTemporizador($event)"
   (agregar)="activarModal($event)"
   (reiniciar)="reiniciarValores($event)">
@@ -15,6 +16,7 @@
 
 <app-lista-de-tiempos
   [obj]="temporizador"
+  [opcionApp]="1"
   (agregar)="agregarAlPrincipal($event)"
   (eliminar)="eliminarTiempo($event)">
 </app-lista-de-tiempos>

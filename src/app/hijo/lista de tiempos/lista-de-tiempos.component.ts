@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export class ListaDeTiemposComponent {
   @Input() obj:Object;
+  @Input() opcionApp:number;
   @Output('agregar') agregarEvento = new EventEmitter();
   @Output('eliminar') eliminarEvento = new EventEmitter();
   constructor () {

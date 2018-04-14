@@ -32,13 +32,13 @@
         </h1>
       </div>
       <ul class="menu">
-        <li class="menu-item" [routerLink]="['/temporizador']">
+        <li class="menu-item" [routerLink]="['/temporizador']" (click)="desactivarMenu()">
           <a class="item-enlace icon-hour-glass"  [routerLink]="['/temporizador']"></a>Temporizador
         </li>
-        <li class="menu-item divisor" [routerLink]="['/cronometro']">
+        <li class="menu-item divisor" [routerLink]="['/cronometro']" (click)="desactivarMenu()">
           <a class="item-enlace icon-stopwatch"  [routerLink]="['/cronometro']"></a>Cronometro
         </li>
-        <li class="menu-item" [routerLink]="['/configuracion']">
+        <li class="menu-item" [routerLink]="['/configuracion']" (click)="desactivarMenu()">
           <a class="item-enlace icon-cog" [routerLink]="['/configuracion']"></a>Configuracion
         </li>
       </ul>

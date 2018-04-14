@@ -15,6 +15,7 @@ export class HeaderComponent{
     this.menuActivo = !this.menuActivo;
   }
   ngOnInit() {
+    this.anchoDePantalla = window.innerWidth;
     window.addEventListener('resize', (e) => {
       this.medirAnchoDePantalla();
     });

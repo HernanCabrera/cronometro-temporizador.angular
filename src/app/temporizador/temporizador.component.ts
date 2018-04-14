@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 @Component({
 	selector: 'app-temporizador',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./temporizador.component.css']
 })
 
-export class TemporizadorComponent{
+export class TemporizadorComponent implements OnDestroy{
   public temporizador:Object;
   constructor() {
     this.temporizador = {
@@ -33,6 +33,11 @@ export class TemporizadorComponent{
       }
     }
   }
+  
+  ngOnDestroy () {
+    this.reiniciarValores(this.temporizador);
+  }
+
 	iniciarTemporizador (obj) {
     // Solucion al problema de celulares
     this.agregarAudio(obj);
