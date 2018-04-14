@@ -7,19 +7,19 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
 
 /*Rutas*/
-import { TemporizadorComponent } from './componentes/temporizador/temporizador.component';
-import { ConfiguracionComponent } from './componentes/configuracion/configuracion.component';
-import { CronometroComponent } from './componentes/cronometro/cronometro.component';
-import { ManualComponent } from './componentes/manual/manual.component';
+import { TemporizadorComponent } from './temporizador/temporizador.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { CronometroComponent } from './cronometro/cronometro.component';
 
 /*Componentes*/
-import { TiempoComponent } from './componentes/hijo/tiempo/tiempo.component';
-import { TiempoBotonesComponent } from './componentes/hijo/tiempo botones/tiempo-botones.component';
-import { NuevoTiempoComponent } from './componentes/hijo/nuevo tiempo/nuevo-tiempo.component';
-import { ListaDeTiemposComponent } from './componentes/hijo/lista de tiempos/lista-de-tiempos.component';
+import { TiempoComponent } from './hijo/tiempo/tiempo.component';
+import { TiempoBotonesComponent } from './hijo/tiempo botones/tiempo-botones.component';
+import { NuevoTiempoComponent } from './hijo/nuevo tiempo/nuevo-tiempo.component';
+import { ListaDeTiemposComponent } from './hijo/lista de tiempos/lista-de-tiempos.component';
 
 /*Vistas*/
-import { HeaderComponent } from './componentes/diseño/header/header.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 /*Pipes*/
 import { ConversorATiempoPipe } from './pipes/conversor-a-tiempo.pipe';
@@ -29,10 +29,10 @@ import { ConversorATiempoPipe } from './pipes/conversor-a-tiempo.pipe';
     AppComponent,
     /* Vistas */
     HeaderComponent,
+    FooterComponent,
     /* Rutas */
     TemporizadorComponent,
     CronometroComponent,
-    ManualComponent,
     ConfiguracionComponent,
     /* Componentes */
     TiempoComponent,

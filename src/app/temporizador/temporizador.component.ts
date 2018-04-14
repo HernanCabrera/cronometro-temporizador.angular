@@ -20,26 +20,7 @@ export class TemporizadorComponent{
         minuto: 0,
         segundo: 0
       },
-      listaDeTiempos: [
-        {
-          hora: 1,
-          minuto: 10,
-          segundo: 0,
-          botonEliminarActivo: false
-        },
-        {
-          hora: 0,
-          minuto: 30,
-          segundo: 0,
-          botonEliminarActivo: false
-        },
-        {
-          hora: 0,
-          minuto: 0,
-          segundo: 10,
-          botonEliminarActivo: false
-        }
-      ],
+      listaDeTiempos: [],
       tiempoActivo: false,
       nombre: 'Temporizador',
       audioID: null,

@@ -1,6 +1,7 @@
 .lista-tiempos{
   /*background: tomato;*/
   color: #878787;
+  min-height: 300px;
 }
 .lista-tiempos .tiempo{
   display: flex;
