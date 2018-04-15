@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class CronometroComponent {
-  cronometro:Object = {
+  cronometro = {
     tiempo: {
       hora: 0,
       minuto: 0,

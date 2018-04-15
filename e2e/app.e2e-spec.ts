@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('cronometro-temporizador App', () => {
+describe('time-to-time App', () => {
   let page: AppPage;
 
   beforeEach(() => {

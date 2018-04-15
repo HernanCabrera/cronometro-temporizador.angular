@@ -11,7 +11,9 @@
 <app-nuevo-tiempo
   [obj]="temporizador"
   (agregar)="agregarALista($event)"
-  (cancelar)="cancelarModal($event)">
+  (cancelar)="cancelarModal($event)"
+  (sumar)="sumar($event)"
+  (restar)="restar($event)">
 </app-nuevo-tiempo>
 
 <app-lista-de-tiempos
@@ -21,10 +23,10 @@
   (eliminar)="eliminarTiempo($event)">
 </app-lista-de-tiempos>
 
-<audio
+<audio 
   controls
   [id]="temporizador.nombre"
-  src="./../../../assets/alarma.mp3"
+  [src]="alarmaSeleccionada.src"
   type="audio/mpeg"
   preload="auto">
 </audio>

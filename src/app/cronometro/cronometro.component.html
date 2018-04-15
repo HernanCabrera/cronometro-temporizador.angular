@@ -1,4 +1,6 @@
-<app-tiempo [tiempo]="cronometro.tiempo"></app-tiempo>
+<app-tiempo [tiempo]="cronometro.tiempo">
+  
+</app-tiempo>
 
 <app-tiempo-botones
   [obj]="cronometro"
@@ -8,11 +10,6 @@
   (reiniciar)="reiniciarValores($event)">
 </app-tiempo-botones>
 
-<app-nuevo-tiempo
-  [obj]="cronometro"
-  (agregar)="agregarALista($event)"
-  (cancelar)="cancelarModal($event)">
-</app-nuevo-tiempo>
 
 <app-lista-de-tiempos
   [obj]="cronometro"

@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 
 export class TiempoComponent {
-  @Input('tiempo') tiempo:Object;
+  @Input('tiempo') tiempo;
 }

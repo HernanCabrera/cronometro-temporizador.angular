@@ -1,10 +1,10 @@
 {
-  "name": "cronometro-temporizador",
+  "name": "time-to-time",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "serve dist/ --single",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.2.0",
+    "@angular/animations": "^5.2.9",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",

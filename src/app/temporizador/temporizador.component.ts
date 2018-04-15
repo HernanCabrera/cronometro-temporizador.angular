@@ -1,4 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ConfiguracionService } from '../services/configuracion.service';
 
 @Component({
 	selector: 'app-temporizador',
@@ -6,34 +7,39 @@ import { Component, OnDestroy } from '@angular/core';
   styleUrls: ['./temporizador.component.css']
 })
 
-export class TemporizadorComponent implements OnDestroy{
-  public temporizador:Object;
-  constructor() {
-    this.temporizador = {
-      tiempo: {
-        hora: 0,
-        minuto: 0,
-        segundo: 0
-      },
-      auxTiempo: {
-        hora: 0,
-        minuto: 0,
-        segundo: 0
-      },
-      listaDeTiempos: [],
-      tiempoActivo: false,
-      nombre: 'Temporizador',
-      audioID: null,
-      intervalo: null,
-      agregarActivo: false,
-      nuevoTiempo: {
-        hora: '',
-        minuto: '',
-        segundo: ''
-      }
-    }
+export class TemporizadorComponent implements OnInit, OnDestroy{
+  temporizador = {
+    tiempo: {
+      hora: 0,
+      minuto: 0,
+      segundo: 0
+    },
+    auxTiempo: {
+      hora: 0,
+      minuto: 0,
+      segundo: 0
+    },
+    listaDeTiempos: [],
+    tiempoActivo: false,
+    nombre: 'Temporizador',
+    audioID: null,
+    intervalo: null,
+    agregarActivo: false,
+    nuevoTiempo: {
+      hora: '',
+      minuto: '',
+      segundo: ''
+    },
+    opcion: 0
+  };
+  alarmaSeleccionada;
+  constructor (private configuracionService: ConfiguracionService) {
   }
   
+  ngOnInit () {
+    this.alarmaSeleccionada = this.configuracionService.alarmaSeleccionada;
+  }
+
   ngOnDestroy () {
     this.reiniciarValores(this.temporizador);
   }
@@ -58,7 +64,9 @@ export class TemporizadorComponent implements OnDestroy{
   }
 	reducirElTiempo (obj) {
     if (this.tiempoNulo(obj.tiempo)) {
-      this.iniciarAudio(obj);
+      if (this.configuracionService.sonidoActivo) {
+        this.iniciarAudio(obj);
+      }
       this.reiniciarValores(obj);
     } else {
       if (obj.tiempo.minuto === 0 && obj.tiempo.hora > 0 && obj.tiempo.segundo === 0) {
@@ -114,7 +122,7 @@ export class TemporizadorComponent implements OnDestroy{
     }
   }
   agregarAudio (obj) {
-    if (obj.audioID === null) {
+    if (obj.audioID === null && this.configuracionService.sonidoActivo) {
       obj.audioID = document.getElementById(obj.nombre);
       obj.audioID.play();
       obj.audioID.pause();
@@ -132,8 +140,17 @@ export class TemporizadorComponent implements OnDestroy{
   }
   agregarALista (obj) {
     const MAX = 50;
-    console.log(obj.nuevoTiempo);
-    if (obj.listaDeTiempos.length < MAX && (obj.nuevoTiempo.hora !== '' || obj.nuevoTiempo.minuto !== '' || obj.nuevoTiempo.segundo !== '')) {
+    if (obj.nuevoTiempo.hora === '') {
+      obj.nuevoTiempo.hora = 0;
+    }
+    if (obj.nuevoTiempo.minuto === '') {
+      obj.nuevoTiempo.minuto = 0;
+    }
+    if (obj.nuevoTiempo.segundo === '') {
+      obj.nuevoTiempo.segundo = 0;
+    }
+
+    if (obj.listaDeTiempos.length < MAX && !this.tiempoNulo(obj.nuevoTiempo) && this.esTiempoValido(obj.nuevoTiempo)) {
       const clon = this.clonarObjeto(obj.nuevoTiempo);
       clon.hora = (clon.hora === '') ? 0 : parseInt(clon.hora);
       clon.minuto = (clon.minuto === '') ? 0 : parseInt(clon.minuto);
@@ -141,9 +158,12 @@ export class TemporizadorComponent implements OnDestroy{
       obj.listaDeTiempos.push(clon);
       this.inicializarTiempo(obj.nuevoTiempo, 2);
       this.cancelarModal(obj);
+    } else {
+      this.inicializarTiempo(obj.nuevoTiempo, 2);
     }
   }
   agregarAlPrincipal (obj) {
+    
     if (!obj.tiempoActivo) {
       obj.tiempo = this.clonarObjeto(obj.nuevoTiempo)
       obj.auxTiempo = this.clonarObjeto(obj.nuevoTiempo);
@@ -152,5 +172,58 @@ export class TemporizadorComponent implements OnDestroy{
   }
   eliminarTiempo (tiempo) {
     tiempo.listaDeTiempos.splice(tiempo.indice, 1);
+  }
+
+  sumar (obj) {
+    if (obj.opcion == 1) {
+      if (obj.nuevoTiempo.hora != 23) {
+        obj.nuevoTiempo.hora++;
+      } else {
+        obj.nuevoTiempo.hora = 23;
+      }
+    } else if (obj.opcion == 2) {
+      if (obj.nuevoTiempo.minuto != 59) {
+        obj.nuevoTiempo.minuto++;
+      } else {
+        obj.nuevoTiempo.minuto = 59;
+      }
+    } else {
+      if (obj.nuevoTiempo.segundo != 59) {
+        obj.nuevoTiempo.segundo++;
+      } else {
+        obj.nuevoTiempo.segundo = 59;
+      }
+    }
+  }
+  restar (obj) {
+    if (obj.opcion == 1) {
+      if (obj.nuevoTiempo.hora != 0) {
+        obj.nuevoTiempo.hora--;
+      } else {
+        obj.nuevoTiempo.hora = 0;
+      }
+    } else if (obj.opcion == 2) {
+      if (obj.nuevoTiempo.minuto != 0) {
+        obj.nuevoTiempo.minuto--;
+      } else {
+        obj.nuevoTiempo.minuto = 0;
+      }
+    } else {
+      if (obj.nuevoTiempo.segundo != 0) {
+        obj.nuevoTiempo.segundo--;
+      } else {
+        obj.nuevoTiempo.segundo = 0;
+      }
+    }
+  }
+
+  esTiempoValido (tiempo) {
+    if (tiempo.hora >= 0 && tiempo.hora <= 23 &&
+        tiempo.minuto >= 0 && tiempo.minuto <= 59 &&
+        tiempo.segundo >= 0 && tiempo.segundo <= 59) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

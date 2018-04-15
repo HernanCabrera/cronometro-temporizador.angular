@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /*Rutas*/
 import { TemporizadorComponent } from './temporizador/temporizador.component';
@@ -23,6 +24,10 @@ import { FooterComponent } from './footer/footer.component';
 
 /*Pipes*/
 import { ConversorATiempoPipe } from './pipes/conversor-a-tiempo.pipe';
+import { NuevaAlarmaComponent } from './hijo/nueva alarma/nueva-alarma.component';
+
+/*Services*/
+import { ConfiguracionService } from './services/configuracion.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,7 @@ import { ConversorATiempoPipe } from './pipes/conversor-a-tiempo.pipe';
     TiempoBotonesComponent,
     NuevoTiempoComponent,
     ListaDeTiemposComponent,
+    NuevaAlarmaComponent,
     /* Pipes */
     ConversorATiempoPipe
   ],
@@ -46,9 +52,10 @@ import { ConversorATiempoPipe } from './pipes/conversor-a-tiempo.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    BrowserAnimationsModule
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, ConfiguracionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
