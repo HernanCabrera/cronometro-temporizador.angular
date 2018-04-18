@@ -26,6 +26,12 @@
 .navegacion .contenedor-texto-menu .menu-hamburguesa:active{
   background: #5d5d5d;
 }
+.navegacion .contenedor-texto-menu .titulo {
+}
+.navegacion .contenedor-texto-menu .titulo .resaltar {
+  color: #82cac6;
+  letter-spacing: 0;
+}
 .navegacion .contenedor-texto-menu .titulo .titulo-enlace{
   color: #fefefe;
   display: inline-block;
@@ -58,6 +64,13 @@
   color: #fefefe;
 }
 
+.navegacion .contenedor-menu-activo .menu .menu-item.activado {
+  color: #fefefe;
+}
+
+.navegacion .contenedor-menu-activo .menu .menu-item .item-enlace.activado {
+  color: #82cac6;
+}
 /*menu*/
 
 
@@ -93,16 +106,10 @@
 }
 
 .navegacion .contenedor-menu-activo {
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   flex-direction: column;
-  width: 260px;
-  height: 100%;
-  top: 0;
-  left: 0;
   justify-content: flex-start;
-  background: #1c1c1c;
-  z-index: 4;
 }
 .navegacion .contenedor-menu-activo .contenedor-texto-menu {
   justify-content: initial;
@@ -116,7 +123,15 @@
   cursor: pointer;
 }
 /*menu activo ancho < 650*/
-
+.animacion-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100%;
+  background: #1c1c1c;
+  z-index: 4;
+}
 @media (max-width: 650px) {
   .navegacion .contenedor-texto-menu .menu-hamburguesa{
     display: block;

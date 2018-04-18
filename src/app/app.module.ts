@@ -13,10 +13,10 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
 import { CronometroComponent } from './cronometro/cronometro.component';
 
 /*Componentes*/
-import { TiempoComponent } from './hijo/tiempo/tiempo.component';
-import { TiempoBotonesComponent } from './hijo/tiempo botones/tiempo-botones.component';
-import { NuevoTiempoComponent } from './hijo/nuevo tiempo/nuevo-tiempo.component';
-import { ListaDeTiemposComponent } from './hijo/lista de tiempos/lista-de-tiempos.component';
+import { TiempoComponent } from './tiempo/tiempo.component';
+import { TiempoBotonesComponent } from './tiempo botones/tiempo-botones.component';
+import { NuevoTiempoComponent } from './nuevo tiempo/nuevo-tiempo.component';
+import { ListaDeTiemposComponent } from './lista de tiempos/lista-de-tiempos.component';
 
 /*Vistas*/
 import { HeaderComponent } from './header/header.component';
@@ -24,10 +24,11 @@ import { FooterComponent } from './footer/footer.component';
 
 /*Pipes*/
 import { ConversorATiempoPipe } from './pipes/conversor-a-tiempo.pipe';
-import { NuevaAlarmaComponent } from './hijo/nueva alarma/nueva-alarma.component';
+import { NuevaAlarmaComponent } from './nueva alarma/nueva-alarma.component';
 
 /*Services*/
 import { ConfiguracionService } from './services/configuracion.service';
+import { TiempoService } from './services/tiempo.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { ConfiguracionService } from './services/configuracion.service';
     routing,
     BrowserAnimationsModule
   ],
-  providers: [appRoutingProviders, ConfiguracionService],
+  providers: [appRoutingProviders, ConfiguracionService, TiempoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

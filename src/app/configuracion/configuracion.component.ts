@@ -9,16 +9,23 @@ import { ConfiguracionService } from '../services/configuracion.service';
 
 export class ConfiguracionComponent implements OnInit{
   modalActivo: boolean;
-  
+  state = 'final';
   constructor (public configuracionService: ConfiguracionService) {
   }
   ngOnInit () {
     this.modalActivo = false;
   }
-  public activarModal() {
+  cambiar () {
+    if (this.state === 'inicial') {
+      this.state = 'final';
+    } else {
+      this.state = 'inicial';
+    }
+  }
+  activarModal() {
     this.modalActivo = true;
   }
-  public cancelarModal() {
+  cancelarModal() {
     this.modalActivo = false;
   }
 }

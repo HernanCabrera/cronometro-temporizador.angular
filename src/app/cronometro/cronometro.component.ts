@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { OnDestroy } from '@angular/core';
+import { TiempoService } from '../services/tiempo.service';
 
 @Component({
   selector: 'app-cronometro',
@@ -6,20 +8,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./cronometro.component.css']
 })
 
-export class CronometroComponent {
-  cronometro = {
-    tiempo: {
-      hora: 0,
-      minuto: 0,
-      segundo: 0
-    },
-    listaDeTiempos: [],
-    nombre: 'Cronometro',
-    tiempoActivo: false,
-    intervalo: null
-  };
-  constructor () {
+export class CronometroComponent implements OnDestroy {
+  cronometro: any;
 
+  constructor (private tiempoService: TiempoService) {
+    const cronometroAux = this.tiempoService.obtenerDelLocalStorage("cronometro");
+    if (cronometroAux) {
+      this.cronometro = cronometroAux;
+    } else {
+      this.cronometro = {
+        tiempo: {
+          hora: 0,
+          minuto: 0,
+          segundo: 0
+        },
+        listaDeTiempos: [],
+        nombre: 'Cronometro',
+        tiempoActivo: false,
+        intervalo: null
+      };
+    }
+  }
+
+  ngOnDestroy () {
+    this.reiniciarValores(this.cronometro);
+    this.tiempoService.guardarEnLocalStorage("cronometro", this.cronometro);
   }
 
   iniciarCronometro(obj) {
@@ -35,40 +48,19 @@ export class CronometroComponent {
           obj.tiempo.hora++;
           obj.tiempo.minuto = 0;
         }
-        this.cambiarTitulo(2, obj.nombre, obj.tiempo, null);
+        this.tiempoService.cambiarTitulo(2, obj.nombre, obj.tiempo, null);
       }, 1000)
     } else {
-      this.cambiarTitulo(1, obj.nombre, null, null);
+      this.tiempoService.cambiarTitulo(1, obj.nombre, null, null);
       clearInterval(obj.intervalo);
-    }
-  }
-
-  cambiarTitulo(opts, str, tiempo, iteraciones) {
-    const tituloOriginal = 'TimeToTime';
-    if (opts === 1) {
-      document.title = `${tituloOriginal}-${str}`;
-    } else if (opts === 2) {
-      document.title = tiempo.hora + ':' +
-        ((tiempo.minuto <= 9) ? '0' + tiempo.minuto : tiempo.minuto) + ':' +
-        ((tiempo.segundo <= 9) ? '0' + tiempo.segundo : tiempo.segundo) +
-        ` ${tituloOriginal}-${str}`;
-    } else {
-      document.title = `${iteraciones} | ` + tiempo.hora + ':' +
-        ((tiempo.minuto <= 9) ? '0' + tiempo.minuto : tiempo.minuto) + ':' +
-        ((tiempo.segundo <= 9) ? '0' + tiempo.segundo : tiempo.segundo) +
-        ` ${tituloOriginal}-${str}`;
     }
   }
 
   reiniciarValores(obj) {
     obj.tiempoActivo = false;
-    this.cambiarTitulo(1, obj.nombre, null, null);
+    this.tiempoService.cambiarTitulo(1, obj.nombre, null, null);
     this.inicializarTiempo(obj.tiempo, 1);
     clearInterval(obj.intervalo);
-  }
-
-  clonarObjeto(obj) {
-    return Object.assign({}, obj);
   }
 
   inicializarTiempo(tiempo, opts) {
@@ -81,17 +73,9 @@ export class CronometroComponent {
 
   agregarALista(obj) {
     const MAX = 50
-    if ((!this.tiempoNulo(obj.tiempo)) && obj.listaDeTiempos.length < MAX && obj.tiempoActivo) {
-      const clon = this.clonarObjeto(obj.tiempo);
+    if ((!this.tiempoService.tiempoNulo(obj.tiempo)) && obj.listaDeTiempos.length < MAX && obj.tiempoActivo) {
+      const clon = this.tiempoService.clonarObjeto(obj.tiempo);
       obj.listaDeTiempos.unshift(clon);
-    }
-  }
-
-  tiempoNulo(tiempo) {
-    if (parseInt(tiempo.hora) === 0 && parseInt(tiempo.minuto) === 0 && parseInt(tiempo.segundo) === 0) {
-      return true
-    } else {
-      return false
     }
   }
 

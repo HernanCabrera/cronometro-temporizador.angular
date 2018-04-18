@@ -7,7 +7,8 @@
         <a
           class="titulo-enlace"
           [routerLink]="['/temporizador']" >
-          TimeToTime
+          <!-- <span class="resaltar">TimeToTime</span> -->
+          Time<span class="resaltar">T</span>o<span class="resaltar">T</span>ime
         </a>
       </h1>
     </div>
@@ -20,28 +21,30 @@
 
     
     <div class="pantalla-negra" *ngIf="menuActivo" (click)="desactivarMenu()"></div>
-
-    <div class="contenedor-menu-activo" *ngIf="menuActivo">
-      <div class="contenedor-texto-menu">
-      
-        <div class="menu-hamburguesa icon-menu activo" (click)="toggleMenu()"></div>
-        <h1 class="titulo">
-          <a class="titulo-enlace" [routerLink]="['/temporizador']">
-            TimeToTime
-          </a>
-        </h1>
+    
+    <div class="animacion-menu" [@toggleMenu]="state">
+      <div class="contenedor-menu-activo" *ngIf="menuActivo">
+        <div class="contenedor-texto-menu">
+          
+          <div class="menu-hamburguesa icon-menu activo" (click)="toggleMenu()"></div>
+          <h1 class="titulo">
+            <a class="titulo-enlace" [routerLink]="['/temporizador']">
+              Time<span class="resaltar">T</span>o<span class="resaltar">T</span>ime
+            </a>
+          </h1>
+        </div>
+        <ul class="menu">
+          <li class="menu-item" [routerLink]="['/temporizador']"  [routerLinkActive]="['activado']" (click)="desactivarMenu()">
+            <a class="item-enlace icon-hour-glass"  [routerLink]="['/temporizador']" [routerLinkActive]="['activado']"></a>Temporizador
+          </li>
+          <li class="menu-item divisor" [routerLink]="['/cronometro']" [routerLinkActive]="['activado']" (click)="desactivarMenu()">
+            <a class="item-enlace icon-stopwatch"  [routerLink]="['/cronometro']" [routerLinkActive]="['activado']"></a>Cronometro
+          </li>
+          <li class="menu-item" [routerLink]="['/configuracion']" [routerLinkActive]="['activado']" (click)="desactivarMenu()">
+            <a class="item-enlace icon-cog" [routerLink]="['/configuracion']"  [routerLinkActive]="['activado']"></a>Configuracion
+          </li>
+        </ul>
       </div>
-      <ul class="menu">
-        <li class="menu-item" [routerLink]="['/temporizador']" (click)="desactivarMenu()">
-          <a class="item-enlace icon-hour-glass"  [routerLink]="['/temporizador']"></a>Temporizador
-        </li>
-        <li class="menu-item divisor" [routerLink]="['/cronometro']" (click)="desactivarMenu()">
-          <a class="item-enlace icon-stopwatch"  [routerLink]="['/cronometro']"></a>Cronometro
-        </li>
-        <li class="menu-item" [routerLink]="['/configuracion']" (click)="desactivarMenu()">
-          <a class="item-enlace icon-cog" [routerLink]="['/configuracion']"></a>Configuracion
-        </li>
-      </ul>
     </div>
   </nav>
 </header>
